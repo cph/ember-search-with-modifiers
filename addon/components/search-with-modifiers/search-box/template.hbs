@@ -1,0 +1,19 @@
+{{! template-lint-disable no-triple-curlies }}
+{{textarea
+    rows=1
+    autocomplete="off"
+    spellcheck=false
+    class="main-input"
+    placeholder=placeholder
+    value=_value
+    maxlength=maxlength
+    click=(action "didClick")
+    paste=(action "didPaste")
+    cut=(action "didCut")
+    focus-in=(action "didReceiveFocus")
+    focus-out=(action "didLoseFocus")
+    disabled=disabled}}
+
+<div class="background-container">{{{backgroundText}}}</div>
+
+{{yield}}
