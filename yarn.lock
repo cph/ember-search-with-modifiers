@@ -3308,10 +3308,10 @@ ember-export-application-global@^2.0.0:
   dependencies:
     ember-cli-babel "^6.0.0-beta.7"
 
-ember-list-keyboard-navigator@^0.0.1-beta.1:
-  version "0.0.1-beta.1"
-  resolved "https://registry.yarnpkg.com/ember-list-keyboard-navigator/-/ember-list-keyboard-navigator-0.0.1-beta.1.tgz#89e3fe68e8b03a705b8253936728bbbf1cf12fc2"
-  integrity sha512-IX13211ZkCrdVgTlfC66NRZ0MTfvcdJIkXRXy51FvwoExBFoPsxUDa0RdolchVAM6240wwegJj4MZqdIqk6ckw==
+ember-list-keyboard-navigator@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/ember-list-keyboard-navigator/-/ember-list-keyboard-navigator-0.0.1.tgz#33eb370cb4a7da42f1f2d32e223ffe6aef4ab924"
+  integrity sha512-EudDqMZj2QCUfD7c90UhY4cBRoeNFlZrLApTQlFM3r1kbh6agWUkh9G8AzPPe9WN5CxDzkeV1mq+0ey/UfEZHg==
   dependencies:
     "@ember/jquery" "^0.5.2"
     ember-cli-babel "^7.1.2"
