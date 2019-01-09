@@ -36,8 +36,8 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
     run.schedule('afterRender', this, function() {
-      this._mainInput = this.$('.main-input');
-      this._background = this.$('.background-container');
+      this._mainInput = this.$('.search-box-input');
+      this._background = this.$('.search-box-hints');
       this._mouseWheelListener = run.bind(this, 'onMouseScroll');
       this._mainInput.on('mousewheel DOMMouseScroll', this._mouseWheelListener); // maybe to do with custom events ?
 
@@ -128,12 +128,12 @@ export default Component.extend({
       if(['default', 'modifier-list', 'space'].indexOf(get(token, 'type')) >= 0) {
         text.push(fullText);
       } else if(get(token, 'isValueValid')) {
-        text.push(`<span class='modifier'>${fullText}</span>`);
+        text.push(`<span class='search-box-hint'>${fullText}</span>`);
       } else {
-        text.push(`<span class='modifier incomplete'>${fullText}</span>`);
+        text.push(`<span class='search-box-hint incomplete'>${fullText}</span>`);
       }
     });
-    text.push(`<span class="hint-value">${this.get('hintValue') || ''}</span>`);
+    text.push(`<span class="search-box-hint-value">${this.get('hintValue') || ''}</span>`);
     return text.join('');
   }),
 
@@ -165,7 +165,7 @@ export default Component.extend({
     //   4. Typing at the end of the field
     //   5. Pressing and holding the Left or Right keys
     //
-    // In these events, we need to update the position of .background-container
+    // In these events, we need to update the position of .search-box-hints
     // to match the input field.
     //
     //
