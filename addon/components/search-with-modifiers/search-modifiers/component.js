@@ -11,6 +11,7 @@ export default Component.extend({
   layout,
   currentIndex: -1,
   classNames: ['search-modifiers'],
+  focused: false,
 
   correctScroll: observer('currentIndex', function() {
     scheduleOnce('afterRender', this, function() {
@@ -64,6 +65,11 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     this.updateLists();
+  },
+
+  didInsertElement() {
+    this._super(...arguments);
+    if(this.get('focused')) this.$('.list-keyboard-navigator').focus();
   },
 
   actions: {

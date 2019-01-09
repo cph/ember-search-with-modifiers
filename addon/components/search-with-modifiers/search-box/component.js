@@ -24,7 +24,7 @@ export default Component.extend({
   cursorLocation: -1,
   maxlength: 250,
   _value: '',
-  autofocus: false,
+  focused: false,
 
   init() {
     this._super(...arguments);
@@ -41,9 +41,7 @@ export default Component.extend({
       this._mouseWheelListener = run.bind(this, 'onMouseScroll');
       this._mainInput.on('mousewheel DOMMouseScroll', this._mouseWheelListener); // maybe to do with custom events ?
 
-      if(this.get('autofocus') || this.get('focused')) {
-        this._mainInput.select().focus();
-      }
+      if(this.get('focused')) this._mainInput.select().focus();
     });
   },
 
