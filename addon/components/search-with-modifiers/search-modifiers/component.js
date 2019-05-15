@@ -4,6 +4,7 @@ import { scheduleOnce } from '@ember/runloop';
 import { set, get, computed, observer } from '@ember/object';
 import { typeOf } from '@ember/utils';
 import { A } from '@ember/array';
+import $ from 'jquery';
 
 const doNothing = function() {};
 
@@ -17,7 +18,7 @@ export default Component.extend({
     scheduleOnce('afterRender', this, function() {
       let currentIndex = this.get('currentIndex');
       if(currentIndex === -1 || !this.element) return;
-      let $listItem = this.$('div.search-modifier').eq(currentIndex);
+      let $listItem = $(this.element).find('div.search-modifier').eq(currentIndex);
       let $list = $listItem.parent();
 
       let scroll = $list.scrollTop();
@@ -69,7 +70,7 @@ export default Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    if(this.get('focused')) this.$('.list-keyboard-navigator').focus();
+    if(this.get('focused')) $(this.element).find('.list-keyboard-navigator').focus();
   },
 
   actions: {
