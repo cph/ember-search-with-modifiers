@@ -6,6 +6,7 @@ import Token from '../../../models/token';
 import KEY from '../../../utils/keycodes';
 import { tokenize, setCursor } from '../../../utils/search';
 import { typeOf } from '@ember/utils';
+import $ from 'jquery';
 
 const doNothing = function() {};
 
@@ -36,8 +37,8 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
     run.schedule('afterRender', this, function() {
-      this._mainInput = this.$('.search-box-input');
-      this._background = this.$('.search-box-hints');
+      this._mainInput = $(this.element).find('.search-box-input');
+      this._background = $(this.element).find('.search-box-hints');
       this._mouseWheelListener = run.bind(this, 'onMouseScroll');
       this._mainInput.on('mousewheel DOMMouseScroll', this._mouseWheelListener); // maybe to do with custom events ?
 
