@@ -6,7 +6,6 @@ import Token from '../../../models/token';
 import KEY from '../../../utils/keycodes';
 import { tokenize, setCursor } from '../../../utils/search';
 import { typeOf } from '@ember/utils';
-import $ from 'jquery';
 
 const doNothing = function() {};
 
@@ -37,10 +36,11 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
     run.schedule('afterRender', this, function() {
-      this._mainInput = $(this.element).find('.search-box-input');
-      this._background = $(this.element).find('.search-box-hints');
+      this._mainInput = this.element.querySelector('.search-box-input');
+      this._background = this.element.querySelector('.search-box-hints');
       this._mouseWheelListener = run.bind(this, 'onMouseScroll');
-      this._mainInput.on('mousewheel DOMMouseScroll', this._mouseWheelListener); // maybe to do with custom events ?
+      this._mainInput.addEventListener('mousewheel', this._mouseWheelListener);
+      this._mainInput.addEventListener('DOMMouseScroll', this._mouseWheelListener);
 
       if(this.get('focused')) this._mainInput.select().focus();
     });
@@ -48,7 +48,8 @@ export default Component.extend({
 
   willDestroyElement() {
     this._super(...arguments);
-    this._mainInput.off('mousewheel DOMMouseScroll', this._mouseWheelListener);
+    this._mainInput.removeEventListener('mousewheel', this._mouseWheelListener);
+    this._mainInput.removeEventListener('DOMMouseScroll', this._mouseWheelListener);
   },
 
   onMouseScroll(/* e */) {
