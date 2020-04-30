@@ -4,7 +4,6 @@ import { scheduleOnce } from '@ember/runloop';
 import { set, get, computed, observer } from '@ember/object';
 import { typeOf } from '@ember/utils';
 import { A } from '@ember/array';
-import $ from 'jquery';
 
 const doNothing = function() {};
 
@@ -18,20 +17,20 @@ export default Component.extend({
     scheduleOnce('afterRender', this, function() {
       let currentIndex = this.get('currentIndex');
       if(currentIndex === -1 || !this.element) return;
-      let $listItem = $(this.element).find('div.search-modifier').eq(currentIndex);
-      let $list = $listItem.parent();
+      let listItem = this.element.querySelectorAll('div.search-modifier')[currentIndex];
+      let list = listItem.parentElement;
 
-      let scroll = $list.scrollTop();
-      let listHeight = $list.height();
+      let scroll = list.scrollTop;
+      let listHeight = parseFloat(getComputedStyle(list).height.replace('px', ''));
 
-      let itemHeight = $listItem.outerHeight();
-      let top = $listItem.position().top;
+      let itemHeight = listItem.offsetHeight;
+      let top = listItem.offsetTop;
       let bottom = top + itemHeight;
 
       if(top < 0) {
-        $list.scrollTop(Math.max(0, scroll + top - 8));
+        list.scrollTop = Math.max(0, scroll + top - 8);
       } else if(listHeight < bottom) {
-        $list.scrollTop(scroll + top - listHeight + itemHeight);
+        list.scrollTop = scroll + top - listHeight + itemHeight;
       }
     });
   }),
@@ -70,7 +69,7 @@ export default Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    if(this.get('focused')) $(this.element).find('.list-keyboard-navigator').focus();
+    if(this.get('focused')) this.element.querySelector('.list-keyboard-navigator').focus();
   },
 
   actions: {
