@@ -309,7 +309,7 @@ export default Component.extend({
   notifyOnActiveTokenChanged: observer('activeToken', function() {
     let activeToken = this.get('activeToken');
     if(this._lastActiveToken === activeToken) return;
-    if(this._lastActiveToken) { this._lastActiveToken.off('modelAssigned'); }
+    if(this._lastActiveToken) { this._lastActiveToken.off('modelAssigned', this._onTokenModelAssigned); }
     if(activeToken) { activeToken.on('modelAssigned', this._onTokenModelAssigned); }
     this.getAction('onActiveTokenChanged')(activeToken);
     this._lastActiveToken = activeToken;
