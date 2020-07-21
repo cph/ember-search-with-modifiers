@@ -1,6 +1,5 @@
-import Token from '../models/token';
+import Token from 'ember-search-with-modifiers/models/token';
 import { typeOf } from '@ember/utils';
-import { get, getProperties } from '@ember/object';
 import { copy } from 'ember-copy';
 import { w as toWords } from '@ember/string';
 import unaccent from './unaccent';
@@ -22,9 +21,9 @@ function escapeForRegExp(str) {
 
 export function sanitizeTokens(tokens) {
   return tokens.reduce(function(sum, token) {
-    let t = sanitizeToken(token);
-    if(t) {
-      if(sum[t.modifier]) {
+    const t = sanitizeToken(token);
+    if (t) {
+      if (sum[t.modifier]) {
         sum[t.modifier].push(t);
       } else {
         sum[t.modifier] = [t];
@@ -35,9 +34,10 @@ export function sanitizeTokens(tokens) {
 }
 
 export function sanitizeToken(token) {
-  let type = get(token, 'type');
-  if(type !== 'space' && type !== 'default') {
-    return getProperties(token, 'model', 'fullText', 'modifier', 'value');
+  const { type } = token;
+  if (type !== 'space' && type !== 'default') {
+    const { model, fullText, modifier, value } = token;
+    return { model, fullText, modifier, value };
   }
   return null;
 }
@@ -46,11 +46,11 @@ export function getDefaultContent(configHash, modifiersList) {
   let key, config, list, compositeValue;
   let allList = [];
   let mapContent = function(item) {
-    if(typeOf(item) === 'string') {
+    if (typeOf(item) === 'string') {
       item = { value: item };
     }
 
-    if(toWords(item.value).length > 1) {
+    if (toWords(item.value).length > 1) {
       item.value = `"${item.value}"`;
     }
 
@@ -59,7 +59,7 @@ export function getDefaultContent(configHash, modifiersList) {
 
   for(key in configHash) {
     config = configHash[key];
-    if(config.type === 'list' && config.content) {
+    if (config.type === 'list' && config.content) {
       config.content = config.content.map(mapContent);
       list = config.content.map(function(item) {
         compositeValue = item.value;
@@ -77,18 +77,20 @@ export function getDefaultContent(configHash, modifiersList) {
       allList = allList.concat(list);
     }
   }
-  var modifiers = modifiersList.map(function(item) {
+
+  var modifiers = modifiersList.map(item => {
     item.section = 'Narrow your Search';
     return item;
   });
+
   return modifiers.concat(allList);
 }
 
 function getAllModifiers(configHash) {
   let modifiers = [];
-  for(let key in configHash) {
-    let config = configHash[key];
-    let section = config.type === 'date' ? 'time' : 'others';
+  for (let key in configHash) {
+    const config = configHash[key];
+    const section = config.type === 'date' ? 'time' : 'others';
     modifiers.push({
       value: key,
       label: config.defaultHint,
@@ -100,31 +102,31 @@ function getAllModifiers(configHash) {
 }
 
 export function tokenize(text, configHash) {
-  if(!text) return [];
+  if (!text) { return []; }
 
   let tokens = [];
   let value = '';
   let modifier = '';
   let mode = 'default';
 
-  for(let i = 0; i <= text.length; i++) {
+  for (let i = 0; i <= text.length; i++) {
     var character = text[i];
 
-    if(!character) {
-      if(modifier !== '' || value.length > 0) {
-        tokens.push(Token.create({ configHash, modifier, value }));
+    if (!character) {
+      if (modifier !== '' || value.length > 0) {
+        tokens.push(new Token({ configHash, modifier, value }));
       }
       return tokens;
     }
 
     switch(mode) {
       case 'default':
-        if(character === '"') mode = 'in-quote';
+        if (character === '"') { mode = 'in-quote'; }
 
-        if(modifier !== '') {
+        if (modifier !== '') {
 
-          if(character === ' ' && (/[^ ]/.test(value) || modifier === '#')) {
-            tokens.push(Token.create({ configHash, modifier, value }));
+          if (character === ' ' && (/[^ ]/.test(value) || modifier === '#')) {
+            tokens.push(new Token({ configHash, modifier, value }));
             modifier = '';
             value = '';
             mode = 'whitespace';
@@ -134,9 +136,9 @@ export function tokenize(text, configHash) {
 
         } else {
 
-          if(character === ' ') {
-            if(value.length > 0) {
-              tokens.push(Token.create({ configHash, modifier, value }));
+          if (character === ' ') {
+            if (value.length > 0) {
+              tokens.push(new Token({ configHash, modifier, value }));
               modifier = '';
               value = '';
             }
@@ -145,7 +147,7 @@ export function tokenize(text, configHash) {
 
           value += character;
 
-          if(configHash[value.toLowerCase()] !== undefined) {
+          if (configHash[value.toLowerCase()] !== undefined) {
             modifier = value;
             value = '';
           }
@@ -153,9 +155,9 @@ export function tokenize(text, configHash) {
         break;
 
       case 'whitespace':
-        if(character !== ' ') {
-          if(modifier !== '' || value.length > 0) {
-            tokens.push(Token.create({ configHash, modifier, value }));
+        if (character !== ' ') {
+          if (modifier !== '' || value.length > 0) {
+            tokens.push(new Token({ configHash, modifier, value }));
             modifier = '';
             value = '';
           }
@@ -166,7 +168,7 @@ export function tokenize(text, configHash) {
         break;
 
       case 'in-quote':
-        if(character === '"') mode = 'default';
+        if (character === '"') { mode = 'default'; }
         value += character;
         break;
     }
@@ -199,15 +201,15 @@ export function getMatch(subString, array, key) {
   let regex = new RegExp(`\\b${escapeForRegExp(normalized(subString))}`, 'i');
   return array
     .filter(function(string) {
-      if(key) { string = string[key]; }
-      if(!string) { return false; }
+      if (key) { string = string[key]; }
+      if (!string) { return false; }
       return subString.length < string.length && regex.test(normalized(string));
     });
 }
 
 export function setCursor(node, pos) {
-  if(node) {
-    if(node.createTextRange) {
+  if (node) {
+    if (node.createTextRange) {
       var textRange = node.createTextRange();
       textRange.collapse(true);
       textRange.moveEnd('character', pos);
@@ -218,7 +220,7 @@ export function setCursor(node, pos) {
       node.blur();
       node.focus();
       return true;
-    } else if(node.setSelectionRange) {
+    } else if (node.setSelectionRange) {
       node.setSelectionRange(pos, pos);
 
       // This forces the browser to scroll to the cursor

@@ -20,7 +20,7 @@ describe('Unit | Utility | search', function() {
     };
     let tokens = tokenize(text, config);
     return tokens.map(function(token) {
-      return `${token.get('fullText')}(${token.get('type')})`;
+      return `${token.fullText}(${token.type})`;
     }).join('');
   }
 

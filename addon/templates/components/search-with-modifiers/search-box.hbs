@@ -1,0 +1,40 @@
+{{! template-lint-disable no-triple-curlies }}
+<div
+  class="search-box"
+  ...attributes
+  {{did-update this.updateInternalValue @value}}
+  {{did-update this.acquireFocus @focused}}
+  {{on "keydown" this.onKeyDown}}
+  {{on "keyup" this.onKeyUp}}
+>
+  <textarea
+    rows="1"
+    autocomplete="off"
+    spellcheck="false"
+    class="search-box-input"
+    placeholder={{this.placeholder}}
+    maxlength={{this.maxlength}}
+    disabled={{@disabled}}
+    {{on "input" this.updateValue}}
+    {{on "click" this.didClick}}
+    {{on "paste" this.didPaste}}
+    {{on "cut" this.didCut}}
+    {{on "focusin" this.didReceiveFocus}}
+    {{on "focusout" this.didLoseFocus}}
+    {{on "mousewheel" this.onMouseScroll}}
+    {{on "DOMMouseScroll" this.onMouseScroll}}
+    {{did-insert this.registerMainInput}}
+    {{did-insert this.focusMainInput}}
+    {{did-insert this.syncValueToInput}}
+    {{did-update this.syncValueToInput this._value}}
+    {{will-destroy this.deregisterMainInput}}
+  />
+
+  <div
+    class="search-box-hints"
+    {{did-insert this.registerBackground}}
+    {{will-destroy this.deregisterBackground}}
+  >{{{backgroundText}}}</div>
+
+  {{yield}}
+</div>

@@ -1,0 +1,38 @@
+<div
+  class="search"
+  data-test-search="true"
+  ...attributes
+  {{on "keydown" this.onKeyDown}}
+  {{did-update this.updateInternalQuery @query}}
+>
+  {{#if hasBlock}}
+    {{yield (hash
+      SearchBox=(component "search-with-modifiers/search-box"
+        tokenConfig=this.tokenConfig
+        value=this.query
+        onValueChanged=this.valueDidChange
+        onActiveTokenChanged=this.updateActiveToken
+        onSearchTriggered=this.performSearch
+        onClear=this.performSearch)
+      ModifierList=(if showModifierList (component "search-with-modifiers/search-modifiers"
+        hintList=this.hintList
+        focusOnInput=@focusOnInput
+        onSelect=(action "didSelectModifier")))
+    )}}
+  {{else}}
+    <SearchWithModifiers::SearchBox
+        @tokenConfig={{this.tokenConfig}}
+        @value={{this.query}}
+        @onValueChanged={{this.valueDidChange}}
+        @onActiveTokenChanged={{this.updateActiveToken}}
+        @onSearchTriggered={{this.performSearch}}
+        @onClear={{this.performSearch}} />
+
+    {{#if showModifierList}}
+      <SearchWithModifiers::SearchModifiers
+          @hintList={{this.hintList}}
+          @focusOnInput={{@focusOnInput}}
+          @onSelect={{this.didSelectModifier}} />
+    {{/if}}
+  {{/if}}
+</div>
