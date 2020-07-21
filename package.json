@@ -1,6 +1,6 @@
 {
   "name": "ember-search-with-modifiers",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "A search box that can be configured to allow autocompleting modifier lists",
   "keywords": [
     "ember-addon",

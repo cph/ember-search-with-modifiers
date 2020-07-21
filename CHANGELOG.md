@@ -1,5 +1,11 @@
 # CHANGELOG
 
+### v0.1.0
+* **[improvement]** - Refactored to use Glimmer components (#14)
+* **[breaking]** - `focused` parameter to both `SearchBox` and `SearchModifiers` components is no longer two-way bound
+* **[breaking]** - Made focus action names consistent for both `SearchBox` and `SearchModifiers`: both now have two actions: `onFocusIn` and `onFocusOut`.
+* **[breaking]** - `query` parameter to `SearchWithModifiers` component is no longer two-way bound. Use the existing `valueChange` action to observe changes to `query`
+
 ### v0.0.3
 * **[improvement]** - Removed dependence on jQuery (#4)
 * **[improvement]** - Updated ember-mocha (#4)
