@@ -12,12 +12,12 @@ const hintList = [
     { category: 'Action Types', index: 1, position: 1, value: 'plant', label: 'plant' },
     { category: 'Action Types', index: 2, position: 2, value: 'mineral', label: 'mineral' } ] } ];
 
-describe('Integration | Component | {{search-with-modifiers/search-modifiers}}', function() {
+describe('Integration | Component | SearchWithModifiers::SearchModifiers', function() {
   setupRenderingTest();
 
   it('renders', async function() {
     await render(hbs`
-      {{search-with-modifiers/search-modifiers}}
+      <SearchWithModifiers::SearchModifiers />
     `);
     assert.exists(find('.search-modifiers'));
   });
@@ -26,7 +26,7 @@ describe('Integration | Component | {{search-with-modifiers/search-modifiers}}',
     this.set('hintList', hintList);
 
     await render(hbs`
-      {{search-with-modifiers/search-modifiers hintList=hintList}}
+      <SearchWithModifiers::SearchModifiers @hintList={{hintList}}/>
     `);
 
     assert.deepEqual(
@@ -41,10 +41,10 @@ describe('Integration | Component | {{search-with-modifiers/search-modifiers}}',
     this.set('changeTokenModel', (value) => { model = value });
 
     await render(hbs`
-      {{search-with-modifiers/search-modifiers
-        keyScope="testScope"
-        onSelect=(action changeTokenModel)
-        hintList=hintList}}
+      <SearchWithModifiers::SearchModifiers
+          @keyScope="testScope"
+          @onSelect={{action changeTokenModel}}
+          @hintList={{hintList}}/>
     `);
 
     assert.isNull(find('.search-modifier.highlighted'), 'Expected nothing to be selected');

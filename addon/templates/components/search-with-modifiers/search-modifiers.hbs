@@ -1,0 +1,36 @@
+<div
+  class="search-modifiers"
+  ...attributes
+  {{did-insert this.registerElement}}
+  {{did-update this.updateLists @hintList}}
+  {{did-update this.activateFocus @focused}}
+  {{will-destroy this.deregisterElement}}
+>
+  <ListKeyboardNavigator
+      @itemSelector=".search-modifier"
+      @onHitTop={{@focusOnInput}}
+      @onTyping={{@focusOnInput}}
+      @focused={{@focused}}
+      @onItemSelected={{this.didPressEnterOnNode}}
+      @onItemHighlighted={{this.didHighlightNode}}
+      @onFocusIn={{@onFocusIn}}
+      @onFocusOut={{@onFocusOut}}
+      @items={{this.flatList}} as |highlightedItem|>
+    {{#each @hintList as |section|}}
+      {{#if @sectionHeaderComponent}}
+        {{component @sectionHeaderComponent label=section.section}}
+      {{else}}
+        <h5 class="search-modifier-section">{{section.section}}</h5>
+      {{/if}}
+
+      {{#each section.list as |item|}}
+        <div {{on "click" (fn this.selectItem item.index)}} class="search-modifier {{if (eq item.index this.currentIndex) "current"}} {{if (eq item.index highlightedItem.index) "highlighted"}}">
+          <span class="search-modifier-value">{{item.value}}</span>
+          {{#if item.label}}
+            <span class="search-modifier-label">{{item.label}}</span>
+          {{/if}}
+        </div>
+      {{/each}}
+    {{/each}}
+  </ListKeyboardNavigator>
+</div>

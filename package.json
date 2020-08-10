@@ -1,6 +1,6 @@
 {
   "name": "ember-search-with-modifiers",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "A search box that can be configured to allow autocompleting modifier lists",
   "keywords": [
     "ember-addon",
@@ -22,18 +22,21 @@
     "test:all": "ember try:each"
   },
   "dependencies": {
-    "ember-cli-babel": "^7.1.2",
+    "@ember/render-modifiers": "^1.0.2",
+    "@glimmer/component": "^1.0.0",
+    "@glimmer/tracking": "^1.0.0",
+    "ember-cli-babel": "^7.20.5",
     "ember-cli-htmlbars": "^3.0.0",
     "ember-copy": "^1.0.0",
-    "ember-list-keyboard-navigator": "^0.0.4",
+    "ember-list-keyboard-navigator": "^0.1.1",
     "ember-truth-helpers": "^2.1.0"
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^2.7.0",
-    "ember-cli": "~3.6.1",
+    "ember-cli": "~3.16.1",
     "ember-cli-chai": "^0.5.0",
     "ember-cli-dependency-checker": "^3.0.0",
-    "ember-cli-eslint": "^4.2.3",
     "ember-cli-htmlbars-inline-precompile": "^1.0.3",
     "ember-cli-inject-live-reload": "^1.8.2",
     "ember-cli-sri": "^2.1.1",
@@ -45,16 +48,17 @@
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-mocha": "^0.16.2",
     "ember-resolver": "^5.0.1",
-    "ember-source": "~3.6.0",
+    "ember-source": "~3.16.1",
     "ember-source-channel-url": "^1.1.0",
     "ember-test-selectors": "^0.3.2",
     "ember-try": "^1.0.0",
-    "eslint-plugin-ember": "^5.2.0",
-    "eslint-plugin-node": "^7.0.1",
+    "eslint": "^7.1.0",
+    "eslint-plugin-ember": "^8.6.0",
+    "eslint-plugin-node": "^11.1.0",
     "loader.js": "^4.7.0"
   },
   "engines": {
-    "node": "8.* || >= 10.*"
+    "node": "10.* || >= 12"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
