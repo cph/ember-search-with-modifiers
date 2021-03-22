@@ -66,5 +66,8 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
+  },
+  "resolutions": {
+    "printf": "^0.6.1"
   }
 }
