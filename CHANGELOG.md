@@ -1,5 +1,10 @@
 # CHANGELOG
 
+### v0.2.0
+* **[breaking]** - Required Node 12+ (#21)
+* **[improvement]** - Used GitHub actions for running automated tests (#21)
+* **[fix]** - Updated `printf` to address CVE (#21)
+
 ### v0.1.0
 * **[improvement]** - Refactored to use Glimmer components (#14)
 * **[breaking]** - `focused` parameter to both `SearchBox` and `SearchModifiers` components is no longer two-way bound
