@@ -68,6 +68,7 @@
     "configPath": "tests/dummy/config"
   },
   "resolutions": {
-    "printf": "^0.6.1"
+    "printf": "^0.6.1",
+    "xmlhttprequest-ssl": "^1.6.2"
   }
 }
