@@ -68,8 +68,9 @@
     "configPath": "tests/dummy/config"
   },
   "resolutions": {
+    "glob-parent": "^5.1.2",
     "printf": "^0.6.1",
-    "xmlhttprequest-ssl": "^1.6.2",
-    "glob-parent": "^5.1.2"
+    "xmldom": "github:xmldom/xmldom#0.7.0",
+    "xmlhttprequest-ssl": "^1.6.2"
   }
 }
