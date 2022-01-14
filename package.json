@@ -1,6 +1,6 @@
 {
   "name": "ember-search-with-modifiers",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A search box that can be configured to allow autocompleting modifier lists",
   "keywords": [
     "ember-addon",
@@ -70,7 +70,9 @@
   "resolutions": {
     "ansi-html": "mahdyar/ansi-html-community#v0.0.8",
     "ansi-regex": "^5.0.1",
+    "follow-redirects": "^1.14.7",
     "glob-parent": "^5.1.2",
+    "markdown-it": "^12.3.2",
     "printf": "^0.6.1",
     "set-value": "^4.0.1",
     "xmldom": "github:xmldom/xmldom#0.7.0",
