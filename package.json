@@ -70,6 +70,7 @@
   "resolutions": {
     "ansi-html": "mahdyar/ansi-html-community#v0.0.8",
     "ansi-regex": "^5.0.1",
+    "exec-sh": "^0.3.4",
     "follow-redirects": "^1.14.7",
     "glob-parent": "^5.1.2",
     "markdown-it": "^12.3.2",
