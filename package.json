@@ -74,6 +74,7 @@
     "follow-redirects": "^1.14.7",
     "glob-parent": "^5.1.2",
     "markdown-it": "^12.3.2",
+    "minimist": "^1.2.6",
     "printf": "^0.6.1",
     "set-value": "^4.0.1",
     "xmldom": "github:xmldom/xmldom#0.7.0",
