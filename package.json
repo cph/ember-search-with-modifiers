@@ -80,6 +80,7 @@
     "minimist": "^1.2.6",
     "package-json": "^7.0.0",
     "printf": "^0.6.1",
+    "qs": "^6.10.3",
     "set-value": "^4.0.1",
     "xmldom": "github:xmldom/xmldom#0.7.0",
     "xmlhttprequest-ssl": "^1.6.2"
