@@ -71,6 +71,7 @@
     "ansi-html": "mahdyar/ansi-html-community#v0.0.8",
     "ansi-regex": "^5.0.1",
     "async": "^2.6.4",
+    "cacheable-request": "^10.2.7",
     "ember-source-channel-url": "^3.0.0",
     "exec-sh": "^0.3.4",
     "follow-redirects": "^1.14.7",
