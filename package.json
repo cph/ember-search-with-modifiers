@@ -86,6 +86,7 @@
     "set-value": "^4.0.1",
     "xmldom": "github:xmldom/xmldom#0.7.0",
     "xmlhttprequest-ssl": "^1.6.2",
-    "json5": "^2.2.3"
+    "json5": "^2.2.3",
+    "semver": "^7.5.2"
   }
 }
