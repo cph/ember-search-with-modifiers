@@ -15,7 +15,7 @@ module.exports = function() {
           name: 'ember-lts-previous',
           npm: {
             devDependencies: {
-              'ember-source': '~3.20.0'
+              'ember-source': '~3.24.0'
             }
           }
         },
@@ -23,7 +23,7 @@ module.exports = function() {
           name: 'ember-lts-current',
           npm: {
             devDependencies: {
-              'ember-source': '~3.24.0'
+              'ember-source': '~3.28.0'
             }
           }
         },
