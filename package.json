@@ -71,6 +71,7 @@
     "ansi-html": "mahdyar/ansi-html-community#v0.0.8",
     "ansi-regex": "^5.0.1",
     "async": "^2.6.4",
+    "braces": "^3.0.3",
     "cacheable-request": "^10.2.7",
     "ember-source-channel-url": "^3.0.0",
     "exec-sh": "^0.3.4",
@@ -87,6 +88,7 @@
     "xmldom": "github:xmldom/xmldom#0.7.0",
     "xmlhttprequest-ssl": "^1.6.2",
     "json5": "^2.2.3",
-    "semver": "^7.5.2"
+    "semver": "^7.5.2",
+    "ws": "^8.17.1"
   }
 }
