@@ -88,6 +88,7 @@
     "xmldom": "github:xmldom/xmldom#0.7.0",
     "xmlhttprequest-ssl": "^1.6.2",
     "json5": "^2.2.3",
-    "semver": "^7.5.2"
+    "semver": "^7.5.2",
+    "ws": "^8.17.1"
   }
 }
