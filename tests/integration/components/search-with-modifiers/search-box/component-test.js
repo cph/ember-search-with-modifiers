@@ -1,12 +1,11 @@
-import { assert } from 'chai';
-import { describe, it } from 'mocha';
-import { setupRenderingTest } from 'ember-mocha';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
 import { render, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import { prepareConfig } from 'ember-search-with-modifiers/utils/search';
 
-describe('Integration | Component | SearchWithModifiers::SearchBox', function() {
-  setupRenderingTest();
+module('Integration | Component | SearchWithModifiers::SearchBox', function(hooks) {
+  setupRenderingTest(hooks);
 
   const configHash = {
    "category:": {
@@ -21,7 +20,7 @@ describe('Integration | Component | SearchWithModifiers::SearchBox', function() 
    }
   };
 
-  it('highlights modifiers', async function() {
+  test('highlights modifiers', async function(assert) {
     this.set('query', '');
     this.set('cursorLocation', -1);
     this.set('tokenConfig', prepareConfig(configHash));
