@@ -1,6 +1,5 @@
-import { assert } from 'chai';
-import { it, describe } from 'mocha';
-import { setupRenderingTest } from 'ember-mocha';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
 import { render, findAll, find, triggerKeyEvent } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -12,17 +11,17 @@ const hintList = [
     { category: 'Action Types', index: 1, position: 1, value: 'plant', label: 'plant' },
     { category: 'Action Types', index: 2, position: 2, value: 'mineral', label: 'mineral' } ] } ];
 
-describe('Integration | Component | SearchWithModifiers::SearchModifiers', function() {
-  setupRenderingTest();
+module('Integration | Component | SearchWithModifiers::SearchModifiers', function(hooks) {
+  setupRenderingTest(hooks);
 
-  it('renders', async function() {
+  test('renders', async function(assert) {
     await render(hbs`
       <SearchWithModifiers::SearchModifiers />
     `);
-    assert.exists(find('.search-modifiers'));
+    assert.ok(find('.search-modifiers'));
   });
 
-  it('displays hintList', async function() {
+  test('displays hintList', async function(assert) {
     this.set('hintList', hintList);
 
     await render(hbs`
@@ -34,7 +33,7 @@ describe('Integration | Component | SearchWithModifiers::SearchModifiers', funct
       ['animal', 'plant', 'mineral']);
   });
 
-  it('list current item works', async function() {
+  test('list current item works', async function(assert) {
     this.set('hintList', hintList);
 
     let model = null;
@@ -47,7 +46,7 @@ describe('Integration | Component | SearchWithModifiers::SearchModifiers', funct
           @hintList={{hintList}}/>
     `);
 
-    assert.isNull(find('.search-modifier.highlighted'), 'Expected nothing to be selected');
+    assert.strictEqual(null, find('.search-modifier.highlighted'), 'Expected nothing to be selected');
 
     let target = find('[data-test-list-keyboard-navigator]');
     target.focus();
