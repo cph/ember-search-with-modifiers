@@ -1,9 +1,11 @@
-import { assert } from 'chai';
-import { it, describe } from 'mocha';
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
 import { prepareConfig } from 'ember-search-with-modifiers/utils/search';
 import Token from 'ember-search-with-modifiers/models/token';
 
-describe('Unit | token', function() {
+module('Unit | token', function(hooks) {
+  setupTest(hooks);
+
   const configHash = prepareConfig({
    "before:": {
      type: 'date',
@@ -24,7 +26,7 @@ describe('Unit | token', function() {
    }
   });
 
-  it('token list type works', function() {
+  test('token list type works', function(assert) {
     let token = new Token({ configHash, fullText: 'category:plant' });
 
     assert.equal(token.type, 'list');
@@ -60,7 +62,7 @@ describe('Unit | token', function() {
     ]);
   });
 
-  it('token list type works with quoted tokens', function() {
+  test('token list type works with quoted tokens', function(assert) {
     let token = new Token({ configHash, fullText: 'category:"quoted type"' });
 
     assert.equal(token.type, 'list', 'should identify the type');
