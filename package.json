@@ -74,6 +74,7 @@
     "async": "^2.6.4",
     "braces": "^3.0.3",
     "cacheable-request": "^10.2.7",
+    "diff": "^4.0.4",
     "ember-source-channel-url": "^3.0.0",
     "exec-sh": "^0.3.4",
     "follow-redirects": "^1.14.7",
