@@ -86,7 +86,7 @@
     "ember-mocha/**/debug": "^2.6.9",
     "package-json": "^7.0.0",
     "printf": "^0.6.1",
-    "qs": "^6.10.3",
+    "qs": "^6.16.1",
     "set-value": "^4.0.1",
     "xmldom": "github:xmldom/xmldom#0.7.0",
     "xmlhttprequest-ssl": "^1.6.2",
